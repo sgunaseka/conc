@@ -28,7 +28,10 @@ variable "name_prefix" {
   type    = string
   default = "concierto-test"
 }
-
+variable "env" {
+  type    = string
+  default = "unset"
+}
 provider "aws" {
   region = var.region
 }
@@ -45,6 +48,7 @@ resource "aws_s3_bucket" "test" {
   tags = {
     ManagedBy = "concierto-change-studio"
     Purpose   = "run-engine-test"
+    Environment = var.env
   }
 }
 
